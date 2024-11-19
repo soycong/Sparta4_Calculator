@@ -10,7 +10,7 @@ class CalculatorView: UIView {
         
     lazy var numberLabel: UILabel = {
         let label = UILabel()
-        label.text = "12345"
+        label.text = "0"
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 60)
         label.textColor = .white
@@ -22,6 +22,8 @@ class CalculatorView: UIView {
                          ["4","5","6","-"],
                          ["1","2","3","*"],
                          ["AC", "0","=","/"]]
+    
+    var numberButtons: [UIButton] = [] // 버튼 저장
    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -79,6 +81,7 @@ class CalculatorView: UIView {
 
         titles.forEach { title in
             let button = makeButton(withTitle: title)
+            numberButtons.append(button)
             stackView.addArrangedSubview(button)
         }
         return stackView

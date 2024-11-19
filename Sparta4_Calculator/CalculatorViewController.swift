@@ -19,20 +19,26 @@ class CalculatorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .black
 
-        // Do any additional setup after loading the view.
+        // 각 버튼에 액션 추가
+        for button in calculatorView.numberButtons {
+            button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func numberButtonTapped(_ sender: UIButton) {
+        guard let title = sender.title(for: .normal) else { return }
+        // 숫자 버튼을 눌렀을 때 레이블을 해당 숫자로 변경
+        if let _ = Int(title) {
+            if calculatorView.numberLabel.text == "0" {
+                calculatorView.numberLabel.text = title
+            } else {
+                calculatorView.numberLabel.text? += title
+            }
+        }
+        // AC 버튼을 눌렀을 때 초기화
+        else if title == "AC" {
+            calculatorView.numberLabel.text = "0"
+        }
     }
-    */
-
 }

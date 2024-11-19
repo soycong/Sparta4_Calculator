@@ -1,4 +1,5 @@
 # 내배캠 개인과제4: UIKit 코드 베이스 계산기 앱 구현
+<img src="https://github.com/user-attachments/assets/a5383260-a2a9-4504-be58-1f084422c891" width="500" height="300" alt="Demo GIF">
 
 ## 필수 구현 기능
 - Lv.1: 수식 UILabel 구현-속성 및 AutoLayout 설정
@@ -9,7 +10,7 @@
 - Lv.6: 초기 수식 UILabel 0으로 설정 및 UIButton 클릭 시 UILabel에 숫자 표시 기능 구현
 - Lv.7: 초기화 버튼 (AC) 기능 구현
 - Lv.8: 등호 버튼(=) 연산 기능 구현
-- *모든 예외 처리 필수!
+- *모든 예외 처리 필수 및 AutoLayout 설정
 
 ## 작업 기간
 - 2024.11.14~

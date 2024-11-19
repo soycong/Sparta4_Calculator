@@ -7,13 +7,7 @@
 import UIKit
 
 class CalculatorView: UIView {
-    
-    var buttonNumbers = [["7","8","9","+"],
-                         ["4","5","6","-"],
-                         ["1","2","3","*"],
-                         ["AC", "0",".","="]]
-    var numberButtons: [UIButton] = []
-    
+        
     lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.text = "12345"
@@ -24,16 +18,11 @@ class CalculatorView: UIView {
         return label
     }()
     
-    lazy var numberButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        button.layer.cornerRadius = 40
-        button.frame.size.height = 80
-        button.frame.size.width = 80
-        return button
-    }()
-    
+    var buttonNumbers = [["7","8","9","+"],
+                         ["4","5","6","-"],
+                         ["1","2","3","*"],
+                         ["AC", "0","=","/"]]
+   
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -63,10 +52,17 @@ class CalculatorView: UIView {
         button.setTitle(title, for: .normal)  // 이 부분을 추가하여 버튼에 제목을 설정
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         button.layer.cornerRadius = 40
         button.frame.size.height = 80
         button.frame.size.width = 80
+        
+        // 특정 버튼을 주황색으로 설정
+        if title == "AC" || title == "=" || title == "+" || title == "-" || title == "*" || title == "/" {
+            button.backgroundColor = UIColor.orange
+        } else {
+            button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        }
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }

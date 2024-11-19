@@ -19,26 +19,29 @@ class CalculatorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 각 버튼에 액션 추가
-        for button in calculatorView.numberButtons {
-            button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
+        
+        calculatorView.numberButtons.forEach { button in
+            if button.title(for: .normal) == "AC" { //AC 기능 분리
+                button.addTarget(self, action: #selector(clearLabel), for: .touchUpInside)
+            } else {
+                button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
+            }
         }
     }
     
     @objc func numberButtonTapped(_ sender: UIButton) {
         guard let title = sender.title(for: .normal) else { return }
+        
         // 숫자 버튼을 눌렀을 때 레이블을 해당 숫자로 변경
-        if let _ = Int(title) {
-            if calculatorView.numberLabel.text == "0" {
-                calculatorView.numberLabel.text = title
-            } else {
-                calculatorView.numberLabel.text? += title
-            }
+        if calculatorView.numberLabel.text == "0" {
+            calculatorView.numberLabel.text = title
+        } else {
+            calculatorView.numberLabel.text? += title
         }
-        // AC 버튼을 눌렀을 때 초기화
-        else if title == "AC" {
-            calculatorView.numberLabel.text = "0"
-        }
+    }
+    
+    // AC 버튼으로 초기화
+    @objc func clearLabel() {
+        calculatorView.numberLabel.text = "0"
     }
 }

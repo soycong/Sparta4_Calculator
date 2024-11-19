@@ -52,9 +52,10 @@ class CalculatorView: UIView {
         button.setTitle(title, for: .normal)  // 이 부분을 추가하여 버튼에 제목을 설정
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-        button.layer.cornerRadius = 40
+
         button.frame.size.height = 80
         button.frame.size.width = 80
+        button.layer.cornerRadius =  button.frame.size.height / 2
         
         // 특정 버튼을 주황색으로 설정
         if title == "AC" || title == "=" || title == "+" || title == "-" || title == "*" || title == "/" {

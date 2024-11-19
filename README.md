@@ -1,5 +1,5 @@
 # 내배캠 개인과제4: UIKit 코드 베이스 계산기 앱 구현
-<img src="https://github.com/user-attachments/assets/a5383260-a2a9-4504-be58-1f084422c891" width="500" alt="Demo GIF">
+<img src="https://github.com/user-attachments/assets/a5383260-a2a9-4504-be58-1f084422c891" width="200" alt="Demo GIF">
 
 ## 필수 구현 기능
 - Lv.1: 수식 UILabel 구현-속성 및 AutoLayout 설정

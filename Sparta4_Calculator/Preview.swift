@@ -6,6 +6,7 @@
 //
 import UIKit
 
+@available(iOS 17.0, *) // 타겟 버전이 낮은 경우, available 속성 사용
 #Preview {
     CalculatorViewController()
 }

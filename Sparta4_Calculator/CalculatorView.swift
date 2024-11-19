@@ -8,6 +8,9 @@ import UIKit
 
 class CalculatorView: UIView {
     
+    var buttonNumbers = ["7","8","9","+"]
+    var numberButtons: [UIButton] = []
+    
     lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.text = "12345"
@@ -16,6 +19,16 @@ class CalculatorView: UIView {
         label.textColor = .white
         label.backgroundColor = .black
         return label
+    }()
+    
+    lazy var numberButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
+        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        button.layer.cornerRadius = 40
+        button.frame.size.height = 80
+        button.frame.size.width = 80
+        return button
     }()
     
     required init?(coder: NSCoder) {
@@ -27,6 +40,7 @@ class CalculatorView: UIView {
         self.backgroundColor = UIColor.black
 
         configureNumberLabel()
+        configureNumberButtons() // 여기서 스택뷰 추가 및 제약 설정을 호출합니다.
     }
     
     func configureNumberLabel() {
@@ -41,5 +55,48 @@ class CalculatorView: UIView {
         ])
     }
     
-}
+    func makeButton(withTitle title: String) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: .normal)  // 이 부분을 추가하여 버튼에 제목을 설정
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
+        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        button.layer.cornerRadius = 40
+        button.frame.size.height = 80
+        button.frame.size.width = 80
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
     
+    func makeHorizontalStackView(withTitle titles: [String]) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.backgroundColor = .black
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        
+        titles.forEach { title in
+            let button = makeButton(withTitle: title)
+            stackView.addArrangedSubview(button)
+        }
+        return stackView
+    }
+    
+    func configureNumberButtons() {
+        // 스택뷰 생성
+        let numberStackView = makeHorizontalStackView(withTitle: buttonNumbers)
+        
+        // 스택뷰를 CalculatorView에 추가
+        addSubview(numberStackView)
+        
+        // 스택뷰 제약 설정
+        NSLayoutConstraint.activate([
+            numberStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            numberStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
+            numberStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30),
+            numberStackView.heightAnchor.constraint(equalToConstant: 80) // 버튼 높이에 맞춘 높이 설정
+        ])
+    }
+    
+}

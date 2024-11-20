@@ -1,9 +1,3 @@
-//
-//  CalculatorView.swift
-//  Sparta4_Calculator
-//
-//  Created by seohuibaek on 11/19/24.
-//
 import UIKit
 
 class CalculatorView: UIView {
@@ -15,6 +9,7 @@ class CalculatorView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 60)
         label.textColor = .white
         label.backgroundColor = .black
+       
         return label
     }()
     
@@ -23,7 +18,7 @@ class CalculatorView: UIView {
                          ["1","2","3","*"],
                          ["AC", "0","=","/"]]
     
-    var numberButtons: [UIButton] = [] // 버튼 저장
+    var numberButtons: [UIButton] = []
    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -45,12 +40,12 @@ class CalculatorView: UIView {
             numberLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 200),
             numberLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             numberLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            numberLabel.heightAnchor.constraint(equalToConstant: 100) // 원하는 높이 설정
+            numberLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
     func configureNumberButtons() {
-        let numberStackView = makeVerticalStackView(withTitles: buttonNumbers) // 스택뷰 생성
+        let numberStackView = makeVerticalStackView(withTitles: buttonNumbers)
 
         addSubview(numberStackView)
 
@@ -71,42 +66,40 @@ class CalculatorView: UIView {
         
         button.frame.size = CGSize(width: 80, height: 80)
         button.layer.cornerRadius =  button.frame.size.height / 2
-        
-        // 특정 버튼을 주황색으로 설정
-        if title == "AC" || title == "=" || title == "+" || title == "-" || title == "*" || title == "/" {
-            button.backgroundColor = UIColor.orange
-        } else {
-            button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        }
+
+        button.backgroundColor = ["AC","=","+", "-", "*", "/"].contains(title) ?
+            .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }
     
     func makeHorizontalStackView(withTitle titles: [String]) -> UIStackView {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.backgroundColor = .black
         stackView.distribution = .fillEqually
         stackView.spacing = 10
         stackView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
         titles.forEach { title in
             let button = makeButton(withTitle: title)
             numberButtons.append(button)
             stackView.addArrangedSubview(button)
         }
+        
         return stackView
     }
     
     func makeVerticalStackView(withTitles titlesArray: [[String]]) -> UIStackView {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.backgroundColor = .black
         stackView.distribution = .fillEqually
         stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         titlesArray.forEach { titles in
             let horizontalStackView = makeHorizontalStackView(withTitle: titles)

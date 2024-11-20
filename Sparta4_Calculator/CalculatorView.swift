@@ -4,12 +4,12 @@ class CalculatorView: UIView {
         
     lazy var numberLabel: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .black
+        label.textColor = .white
         label.text = "0"
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 60)
-        label.textColor = .white
-        label.backgroundColor = .black
-       
+        
         return label
     }()
     
@@ -33,13 +33,13 @@ class CalculatorView: UIView {
     }
     
     func configureNumberLabel() {
-        addSubview(numberLabel)
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(numberLabel)
         
         NSLayoutConstraint.activate([
-            numberLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 200),
             numberLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             numberLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            numberLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 200),
             numberLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
@@ -79,8 +79,8 @@ class CalculatorView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.backgroundColor = .black
-        stackView.distribution = .fillEqually
         stackView.spacing = 10
+        stackView.distribution = .fillEqually
         stackView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -97,8 +97,9 @@ class CalculatorView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.backgroundColor = .black
-        stackView.distribution = .fillEqually
         stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        stackView.widthAnchor.constraint(equalToConstant: 350).isActive = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         titlesArray.forEach { titles in

@@ -25,7 +25,10 @@ class CalculatorViewController: UIViewController {
     }
     
     @objc func enterNumbers(_ sender: UIButton) {
-        guard let title = sender.title(for: .normal) else { return }
+        guard let title = sender.title(for: .normal) else{
+            print("enterNumbers 오류입니다.")
+            return
+        }
         
         if calculatorView.numberLabel.text == "0" {
             calculatorView.numberLabel.text = title

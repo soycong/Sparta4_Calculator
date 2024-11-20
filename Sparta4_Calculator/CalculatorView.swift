@@ -34,7 +34,7 @@ class CalculatorView: UIView {
         self.backgroundColor = UIColor.black
 
         configureNumberLabel()
-        configureNumberButtons() // 여기서 스택뷰 추가 및 제약 설정을 호출합니다.
+        configureNumberButtons()
     }
     
     func configureNumberLabel() {
@@ -49,14 +49,27 @@ class CalculatorView: UIView {
         ])
     }
     
+    func configureNumberButtons() {
+        let numberStackView = makeVerticalStackView(withTitles: buttonNumbers) // 스택뷰 생성
+
+        addSubview(numberStackView)
+
+        NSLayoutConstraint.activate([
+            numberStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            numberStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            numberStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            numberStackView.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60),
+            numberStackView.widthAnchor.constraint(equalToConstant: 350)
+        ])
+    }
+    
     func makeButton(withTitle title: String) -> UIButton {
         let button = UIButton()
-        button.setTitle(title, for: .normal)  // 이 부분을 추가하여 버튼에 제목을 설정
+        button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-
-        button.frame.size.height = 80
-        button.frame.size.width = 80
+        
+        button.frame.size = CGSize(width: 80, height: 80)
         button.layer.cornerRadius =  button.frame.size.height / 2
         
         // 특정 버튼을 주황색으로 설정
@@ -102,23 +115,4 @@ class CalculatorView: UIView {
         
         return stackView
     }
-    
-    func configureNumberButtons() {
-        // 스택뷰 생성
-        let numberStackView = makeVerticalStackView(withTitles: buttonNumbers)
-        
-        // 스택뷰를 CalculatorView에 추가
-        addSubview(numberStackView)
-        
-        // 스택뷰 제약 설정
-        NSLayoutConstraint.activate([
-            numberStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            numberStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            numberStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            numberStackView.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60),
-            numberStackView.widthAnchor.constraint(equalToConstant: 350)
-            //numberStackView.heightAnchor.constraint(equalToConstant: 80) // 버튼 높이에 맞춘 높이 설정
-        ])
-    }
-    
 }

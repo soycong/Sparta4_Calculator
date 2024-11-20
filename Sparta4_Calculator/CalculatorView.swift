@@ -28,8 +28,8 @@ class CalculatorView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.black
 
-        configureNumberLabel()
-        configureNumberButtons()
+        configureNumberLabel() // 계산기 라벨 생성
+        configureNumberButtons() // 계산기 버튼 생성
     }
     
     func configureNumberLabel() {
@@ -66,7 +66,8 @@ class CalculatorView: UIView {
         
         button.frame.size = CGSize(width: 80, height: 80)
         button.layer.cornerRadius =  button.frame.size.height / 2
-
+        
+        // 연산자, 특수버튼과 숫자 버튼 배경 분리
         button.backgroundColor = ["AC","=","+", "-", "*", "/"].contains(title) ?
             .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         
@@ -75,6 +76,7 @@ class CalculatorView: UIView {
         return button
     }
     
+    // 수평 StackView
     func makeHorizontalStackView(withTitle titles: [String]) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -93,6 +95,7 @@ class CalculatorView: UIView {
         return stackView
     }
     
+    // 수직 StackView
     func makeVerticalStackView(withTitles titlesArray: [[String]]) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical

@@ -14,17 +14,17 @@ class CalculatorViewController: UIViewController {
         super.viewDidLoad()
         
         calculatorView.numberButtons.forEach { button in
-            if button.title(for: .normal) == "AC" {
-                button.addTarget(self, action: #selector(clearLabel), for: .touchUpInside)
-            } else if button.title(for: .normal) == "=" {
+            if button.title(for: .normal) == "AC" { // AC 버튼 클릭 -> 초기화
+                button.addTarget(self, action: #selector(clearNumbers), for: .touchUpInside)
+            } else if button.title(for: .normal) == "=" { // = 버튼 클릭 -> 연산 수행
                 button.addTarget(self, action: #selector(calculateNumbers), for: .touchUpInside)
-            } else {
-                button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
+            } else { // 숫자 버튼 클릭 -> 숫자 입력
+                button.addTarget(self, action: #selector(enterNumbers(_:)), for: .touchUpInside)
             }
         }
     }
     
-    @objc func numberButtonTapped(_ sender: UIButton) {
+    @objc func enterNumbers(_ sender: UIButton) {
         guard let title = sender.title(for: .normal) else { return }
         
         if calculatorView.numberLabel.text == "0" {
@@ -34,7 +34,7 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    @objc func clearLabel() {
+    @objc func clearNumbers() {
         calculatorView.numberLabel.text = "0"
     }
     

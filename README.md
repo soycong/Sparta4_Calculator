@@ -13,7 +13,7 @@
 - *모든 예외 처리 필수 및 AutoLayout 설정
 
 ## 작업 기간
-- 2024.11.14~
+- 2024.11.14~2024.11.21
 
 ## Stacks
 <img src="https://img.shields.io/badge/Swift-F05138?style=flat&logo=swift&logoColor=white"/></a>

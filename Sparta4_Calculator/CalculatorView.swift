@@ -32,6 +32,14 @@ class CalculatorView: UIView {
         configureNumberButtons() // 계산기 버튼 생성
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        numberButtons.forEach { button in
+            button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true // 버튼을 정사각형으로 유지
+            button.layer.cornerRadius = button.frame.height / 2
+        }
+    }
+    
     func configureNumberLabel() {
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(numberLabel)
@@ -46,15 +54,14 @@ class CalculatorView: UIView {
     
     func configureNumberButtons() {
         let numberStackView = makeVerticalStackView(withTitles: buttonNumbers)
-
         addSubview(numberStackView)
 
         NSLayoutConstraint.activate([
-            numberStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            numberStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            numberStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            numberStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             numberStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            numberStackView.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60),
-            numberStackView.widthAnchor.constraint(equalToConstant: 350)
+            numberStackView.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60)
+            // numberStackView.widthAnchor.constraint(equalToConstant: 350) // 기존 조건 주석 처리
         ])
     }
     
@@ -64,8 +71,8 @@ class CalculatorView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
         
-        button.frame.size = CGSize(width: 80, height: 80)
-        button.layer.cornerRadius =  button.frame.size.height / 2
+        //button.frame.size = CGSize(width: 80, height: 80) // 기존 조건 주석 처리
+        //button.layer.cornerRadius =  button.frame.size.height / 2 // 기존 조건 주석 처리
         
         // 연산자, 특수버튼과 숫자 버튼 배경 분리
         button.backgroundColor = ["AC","=","+", "-", "*", "/"].contains(title) ?
@@ -83,7 +90,7 @@ class CalculatorView: UIView {
         stackView.backgroundColor = .black
         stackView.spacing = 10
         stackView.distribution = .fillEqually
-        stackView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        //stackView.heightAnchor.constraint(equalToConstant: 80).isActive = true // 기존 조건 주석 처리
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         titles.forEach { title in
@@ -102,7 +109,7 @@ class CalculatorView: UIView {
         stackView.backgroundColor = .black
         stackView.spacing = 10
         stackView.distribution = .fillEqually
-        stackView.widthAnchor.constraint(equalToConstant: 350).isActive = true
+       //stackView.widthAnchor.constraint(equalToConstant: 350).isActive = true // 기존 조건 주석처리
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         titlesArray.forEach { titles in

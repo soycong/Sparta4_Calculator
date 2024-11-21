@@ -28,7 +28,7 @@ class CalculatorView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.black
 
-        configureNumberLabel() // 계산기 라벨 생성
+        configureNumberLabel() // 계산기 레이블 생성
         configureNumberButtons() // 계산기 버튼 생성
     }
     

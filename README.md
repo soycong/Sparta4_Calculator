@@ -31,4 +31,4 @@
 - Chore:	기타 변경사항 (빌드 스크립트 수정 등)
 
 ## Troubleshooting
-[과제 구현 과정 및 트러블 슈팅](https://velog.io/@soycong/%EB%82%B4%EB%B0%B0%EC%BA%A0-Task-3-%EC%95%BC%EA%B5%AC-%EA%B2%8C%EC%9E%84-%EB%A1%9C%EC%A7%81-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+[과제 구현 과정 및 트러블 슈팅](https://velog.io/@soycong/Task-4-UIKit-%EA%B3%84%EC%82%B0%EA%B8%B0-%EC%95%B1-%EA%B5%AC%ED%98%84)
